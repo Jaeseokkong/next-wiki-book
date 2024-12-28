@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-types */
 import { theme } from 'themes'
-import type { ReponsiveProp, Responsive } from 'types'
+import type { ResponsiveProp, Responsive } from 'types'
 
 // Theme의 타입
 export type AppTheme = typeof theme
@@ -20,15 +20,15 @@ export type LetterSpacing = LetterSpacingThemeKeys | (string & {})
 export type LineHeight = LineHeightThemeKeys | (string & {})
 
 // 브레이크 포인트
-const BREAKPOINTS: { [key: string]: string} = {
+const BREAKPOINTS: { [key: string]: string } = {
     sm: '640px', // 640px 이상
     md: '768px', // 768px 이상
     lg: '1024px', // 1024px 이상
-    xl: '1080px', // 1080px 이상
+    xl: '1280px', // 1280px 이상
 }
 
 /**
- * Reponsive 타입을 CSS 속성과 그 값으로 변환
+ * Responsive 타입을 CSS 속성과 그 값으로 변환
  * @param propKey CSS 속성
  * @param prop Responsive 타입
  * @param theme AppTheme
@@ -50,13 +50,13 @@ export function toPropValue<T>(
                         propKey,
                         prop[responsiveKey],
                         theme
-                    )}`
+                    )};`
                 )
             } else if (
                 responsiveKey === 'sm' ||
                 responsiveKey === 'md' ||
                 responsiveKey === 'lg' ||
-                responsiveKey === 'xl' 
+                responsiveKey === 'xl'
             ) {
                 // 미디어 쿼리의 스타일
                 const breakpoint = BREAKPOINTS[responsiveKey]
@@ -64,14 +64,14 @@ export function toPropValue<T>(
                     propKey,
                     prop[responsiveKey],
                     theme
-                )}`
+                )};`
                 result.push(`@media screen and (min-width: ${breakpoint}) {${style}}`)
             }
         }
 
         return result.join('\n')
     }
-    return `${propKey}: ${toThemeValueIfNeeded(propKey, prop, theme)}`
+    return `${propKey}: ${toThemeValueIfNeeded(propKey, prop, theme)};`
 }
 
 const SPACE_KEYS = new Set([
@@ -79,14 +79,14 @@ const SPACE_KEYS = new Set([
     'margin-top',
     'margin-left',
     'margin-bottom',
-    'margin-left',
+    'margin-right',
     'padding',
     'padding-top',
     'padding-left',
     'padding-bottom',
     'padding-right',
 ])
-const COLOR_KEYS = new Set(['color', 'backgroun-color'])
+const COLOR_KEYS = new Set(['color', 'background-color'])
 const FONT_SIZE_KEYS = new Set(['font-size'])
 const LINE_SPACING_KEYS = new Set(['letter-spacing'])
 const LINE_HEIGHT_KEYS = new Set(['line-height'])
@@ -165,7 +165,7 @@ function isFontSizeThemeKeys(prop: any, theme: AppTheme): prop is FontSizeThemeK
 function isLetterSpacingThemeKeys(prop: any, theme: AppTheme): prop is LetterSpacingThemeKeys {
     return Object.keys(theme.letterSpacings).filter((key) => key == prop).length > 0
 }
-
+                                                                                                                    
 function isLineHeightThemeKeys(prop: any, theme: AppTheme): prop is LineHeightThemeKeys {
     return Object.keys(theme.lineHeights).filter((key) => key == prop).length > 0
 }

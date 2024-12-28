@@ -62,7 +62,8 @@ const preview: Preview = {
 const OriginalNextImage = NextImage.default;
 
 Object.defineProperty(NextImage, 'default', {
-  configurable: true,
+  configurable: true, // 재정의를 허용
+  writable: true,     // 값을 다시 쓸 수 있도록 허용
   value: (props) => typeof props.src === 'string' ? (
     <OriginalNextImage {...props} unoptimized blurDataURL={props.src}/>
   ) : (
@@ -70,5 +71,5 @@ Object.defineProperty(NextImage, 'default', {
   )
 })
 
-export default preview;
 
+export default preview;

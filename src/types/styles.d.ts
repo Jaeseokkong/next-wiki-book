@@ -45,3 +45,90 @@ export type CSSPropertyAlignItems =
     | 'baseline'
     | 'normal'
     | (string & {})
+
+export type CSSPropertyAlignContent = 
+    | CSSPropertyGlobals
+    | ContentDistribution
+    | 'center'
+    | 'end'
+    | 'flex-end'
+    | 'flex-start'
+    | 'start'
+    | 'baseline'
+    | 'normal'
+    | (string & {})
+
+export type CSSPropertyJustifyItems =
+    | CSSPropertyGlobals
+    | SelfPosition
+    | 'baseline'
+    | 'left'
+    | 'legacy'
+    | 'normal'
+    | 'right'
+    | 'stretch'
+    | (string & {})
+
+export type CSSPropertyJustifyContent =
+    | CSSPropertyGlobals
+    | ContentDistribution
+    | ContentPosition
+    | 'left'
+    | 'normal'
+    | 'right'
+    | (string & {})
+
+export type CSSPropertyFlexWrap = 
+    | CSSPropertyGlobals
+    | 'nowrap'
+    | 'wrap'
+    | 'wrap-reverse'
+
+export type CSSPropertyFlexDirection = 
+    | CSSPropertyGlobals
+    | 'column'
+    | 'column-reverse'
+    | 'row'
+    | 'row-reverse'
+
+export type CSSPropertyJustifySelf = 
+    | CSSPropertyGlobals
+    | SelfPosition
+    | 'auto'
+    | 'baseline'
+    | 'left'
+    | 'normal'
+    | 'right'
+    | 'stretch'
+    | (string & {})
+
+export type CSSPropertyAlignSelf = 
+    | CSSPropertyGlabals
+    | SelfPosition
+    | 'auto'
+    | 'baseline'
+    | 'normal'
+    | 'stretch'
+    | (string & {})
+
+/**
+ * Grid
+ */
+
+type GridLine = 'auto' | (string & {})
+
+export type CSSPropertyGridColumn = 
+    | CSSPropertyGlobals
+    | GridLine
+    | (string & {})
+
+export type CSSPropertyGridRow = CSSPropertyGlobals | GridLine | (string & {})
+
+export type CSSPropertyGridAutoFlow = 
+    | CSSPropertyGlobals
+    | 'column'
+    | 'dense'
+    | 'row'
+    | (string & {})
+
+export type CSSPropertyGridArea = CSSPropertyGlobals | GridLine | (string & {})
