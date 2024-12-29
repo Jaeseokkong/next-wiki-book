@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-types */
 import { theme } from 'themes'
-import type { ResponsiveProp, Responsive } from 'types'
+import type { ResponsiveProps, Responsive } from '../types/styles'
 
 // Theme의 타입
 export type AppTheme = typeof theme
@@ -37,43 +37,43 @@ const BREAKPOINTS: { [key: string]: string } = {
 export function toPropValue<T>(
     propKey: string,
     prop?: Responsive<T>,
-    theme?: AppTheme
+    theme?: AppTheme,
 ) {
     if (prop === undefined) return undefined
 
     if (isResponsivePropType(prop)) {
-        const result = []
-        for (const responsiveKey in prop) {
-            if (responsiveKey === 'base') {
-                result.push(
-                    `${propKey}: ${toThemeValueIfNeeded(
-                        propKey,
-                        prop[responsiveKey],
-                        theme
-                    )};`
-                )
-            } else if (
-                responsiveKey === 'sm' ||
-                responsiveKey === 'md' ||
-                responsiveKey === 'lg' ||
-                responsiveKey === 'xl'
-            ) {
-                // 미디어 쿼리의 스타일
-                const breakpoint = BREAKPOINTS[responsiveKey]
-                const style = `${propKey}: ${toThemeValueIfNeeded(
-                    propKey,
-                    prop[responsiveKey],
-                    theme
-                )};`
-                result.push(`@media screen and (min-width: ${breakpoint}) {${style}}`)
-            }
+    const result = []
+    for (const responsiveKey in prop) {
+        if (responsiveKey === 'base') {
+        // 기본 스타일
+        result.push(
+            `${propKey}: ${toThemeValueIfNeeded(
+            propKey,
+            prop[responsiveKey],
+            theme,
+            )};`,
+        )
+        } else if (
+        responsiveKey === 'sm' ||
+        responsiveKey === 'md' ||
+        responsiveKey === 'lg' ||
+        responsiveKey === 'xl'
+        ) {
+        // 미디어 쿼리의 스타일
+        const breakpoint = BREAKPOINTS[responsiveKey]
+        const style = `${propKey}: ${toThemeValueIfNeeded(
+            propKey,
+            prop[responsiveKey],
+            theme,
+        )};`
+        result.push(`@media screen and (min-width: ${breakpoint}) {${style}}`)
         }
-
-        return result.join('\n')
     }
+    return result.join('\n')
+    }
+
     return `${propKey}: ${toThemeValueIfNeeded(propKey, prop, theme)};`
 }
-
 const SPACE_KEYS = new Set([
     'margin',
     'margin-top',
@@ -99,6 +99,7 @@ const LINE_HEIGHT_KEYS = new Set(['line-height'])
  * @returns CSS 속성값
  */
 function toThemeValueIfNeeded<T>(propKey: string, value: T, theme?: AppTheme) {
+    console.log(theme, theme?.space, FONT_SIZE_KEYS.has(propKey))
     if (
         theme &&
         theme.space &&
@@ -110,7 +111,7 @@ function toThemeValueIfNeeded<T>(propKey: string, value: T, theme?: AppTheme) {
         theme &&
         theme.colors &&
         COLOR_KEYS.has(propKey) &&
-        isColorThemeKeys(value, theme) 
+        isColorThemeKeys(value, theme)
     ) {
         return theme.colors[value]
     } else if (
@@ -135,11 +136,10 @@ function toThemeValueIfNeeded<T>(propKey: string, value: T, theme?: AppTheme) {
     ) {
         return theme.lineHeights[value]
     }
-    
+    console.log(value)
     return value
 }
-
-function isResponsivePropType<T>(prop: any): prop is ResponsiveProp<T> {
+function isResponsivePropType<T>(prop: any): prop is ResponsiveProps<T> {
     return (
         prop &&
         (prop.base !== undefined ||

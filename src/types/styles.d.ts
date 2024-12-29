@@ -1,22 +1,21 @@
+/* eslint-disable @typescript-eslint/ban-types */
 /**
  * Responsive 속성
- * CSS 속성값을 브레이크 포인트별로 설정할 수 있다
- * T는 CSS 속성값의 타입
  */
-export type ResponsiveProps<T> = {
-    base?: T // 기본값
-    sm?: T // 620px 이상
-    md?: T // 728px 이상
-    lg?: T // 1024px 이상
-    xl?: T // 1280px 이상
+export type ResponsiveProp<T> = {
+    base?: T
+    sm?: T
+    md?: T
+    lg?: T
+    xl?: T
 }
 export type Responsive<T> = T | ResponsiveProp<T>
-
+  
 /**
  * Flex
  */
-type SelfPosition = 
-    | 'center' 
+type SelfPosition =
+    | 'center'
     | 'end'
     | 'flex-end'
     | 'flex-start'
@@ -26,13 +25,13 @@ type SelfPosition =
 
 type ContentPosition = 'center' | 'end' | 'flex-end' | 'flex-start' | 'start'
 
-type ContentDistribution = 
+type ContentDistribution =
     | 'space-around'
     | 'space-between'
     | 'space-evenly'
     | 'stretch'
 
-type CSSPropertyGlobals = 
+type CSSPropertyGlobals =
     | '-moz-initial'
     | 'inherit'
     | 'initial'
@@ -44,9 +43,11 @@ export type CSSPropertyAlignItems =
     | SelfPosition
     | 'baseline'
     | 'normal'
+    | 'stretch'
+    // 코드 자동 보조
     | (string & {})
 
-export type CSSPropertyAlignContent = 
+export type CSSPropertyAlignContent =
     | CSSPropertyGlobals
     | ContentDistribution
     | 'center'
@@ -78,20 +79,20 @@ export type CSSPropertyJustifyContent =
     | 'right'
     | (string & {})
 
-export type CSSPropertyFlexWrap = 
+export type CSSPropertyFlexWrap =
     | CSSPropertyGlobals
     | 'nowrap'
     | 'wrap'
     | 'wrap-reverse'
 
-export type CSSPropertyFlexDirection = 
+export type CSSPropertyFlexDirection =
     | CSSPropertyGlobals
     | 'column'
     | 'column-reverse'
     | 'row'
     | 'row-reverse'
 
-export type CSSPropertyJustifySelf = 
+export type CSSPropertyJustifySelf =
     | CSSPropertyGlobals
     | SelfPosition
     | 'auto'
@@ -102,8 +103,8 @@ export type CSSPropertyJustifySelf =
     | 'stretch'
     | (string & {})
 
-export type CSSPropertyAlignSelf = 
-    | CSSPropertyGlabals
+export type CSSPropertyAlignSelf =
+    | CSSPropertyGlobals
     | SelfPosition
     | 'auto'
     | 'baseline'
@@ -114,17 +115,16 @@ export type CSSPropertyAlignSelf =
 /**
  * Grid
  */
-
 type GridLine = 'auto' | (string & {})
 
-export type CSSPropertyGridColumn = 
+export type CSSPropertyGridColumn =
     | CSSPropertyGlobals
     | GridLine
     | (string & {})
 
 export type CSSPropertyGridRow = CSSPropertyGlobals | GridLine | (string & {})
 
-export type CSSPropertyGridAutoFlow = 
+export type CSSPropertyGridAutoFlow =
     | CSSPropertyGlobals
     | 'column'
     | 'dense'

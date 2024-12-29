@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 import Button from './index'
 
 export default {
@@ -54,38 +54,16 @@ export default {
     }
 } as Meta<typeof Button>
 
-// const Template: StoryFn<typeof Button> = (args) => <Button {...args} />
-type Story = StoryObj<typeof Button>
+const Template: StoryFn<typeof Button> = (args) => <Button {...args} />
 
-export const Primary: Story = {
-    args: {
-        variant: 'primary',
-        children: 'Primary Button'
-    }
-}
+// Primary 버튼
+export const Primary = Template.bind({})
+Primary.args = { variant: 'primary', children: 'Primary Button' }
 
-export const Secondary: Story = {
-    args: {
-        variant: 'secondary',
-        children: 'Secondary Button'
-    }
-}
+// Secondary 버튼
+export const Secondary = Template.bind({})
+Secondary.args = { variant: 'secondary', children: 'Secondary Button'}
 
-export const Disabled: Story = {
-    args: {
-        disabled: true,
-        children: 'Disabled Button'
-    }
-}
-
-// // Primary 버튼
-// export const Primary = Template.bind({})
-// Primary.args = { variant: 'primary', children: 'Primary Button' }
-
-// // Secondary 버튼
-// export const Secondary = Template.bind({})
-// Secondary.args = { variant: 'secondary', children: 'Secondary Button'}
-
-// // Disabled 버튼
-// export const Disabled = Template.bind({})
-// Disabled.args = { disabled: true, children: 'Disabled Button'}
+// Disabled 버튼
+export const Disabled = Template.bind({})
+Disabled.args = { disabled: true, children: 'Disabled Button'}

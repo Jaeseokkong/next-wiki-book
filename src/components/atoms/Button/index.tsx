@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import styled from 'styled-components'
-import { Responsive } from 'types'
+import { Responsive } from '../../../types/styles'
 import {
     toPropValue,
     Color,
@@ -47,9 +47,10 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
             backgroundColor?: Responsive<Color>
         }
     }
+    theme?: any
 }
 
-const variants ={
+const variants = {
     // Primary
     primary: {
         color: 'white',
@@ -102,11 +103,10 @@ const Button = styled.button<ButtonProps>`
         // 변형 스타일 적용
         if (variant && variants[variant]) {
             const styles = []
-            console.log(variants[variant], variant, toPropValue('color', variants[variant].color, theme))
             !color && styles.push(toPropValue('color', variants[variant].color, theme))
             !backgroundColor && styles.push(toPropValue('background-color', variants[variant].backgroundColor, theme))
-            !pseudoClass && styles.push(`&:hover {${toPropValue('background-color', variants[variant].pseudoClass.hover.backgroundColor, theme)}}`.replaceAll('\n', ''))
-            !pseudoClass && styles.push(`&:disabled {${toPropValue('background-color', variants[variant].pseudoClass.disabled.backgroundColor, theme)}}`.replaceAll('\n', ''))
+            !pseudoClass && styles.push(`&:hover {${toPropValue('background-color', variants[variant].pseudoClass.hover.backgroundColor, theme)}};`.replaceAll('\n', ''))
+            !pseudoClass && styles.push(`&:disabled {${toPropValue('background-color', variants[variant].pseudoClass.disabled.backgroundColor, theme)}};`.replaceAll('\n', ''))
             return styles.join('\n')
         }
     }}

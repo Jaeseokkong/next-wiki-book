@@ -2,7 +2,7 @@ import React from 'react'
 import type { Preview } from "@storybook/react";
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { theme } from '../src/themes'
-import * as NextImage from 'next/image'
+import * as NextImage from "next/image"
 
 export const parameters = {
   actions: { argTypeRegex: '^on[A-Z].*'},
@@ -59,17 +59,17 @@ const preview: Preview = {
 };
 
 // next/image 교체
-const OriginalNextImage = NextImage.default;
+// const OriginalNextImage = NextImage.default;
 
-Object.defineProperty(NextImage, 'default', {
-  configurable: true, // 재정의를 허용
-  writable: true,     // 값을 다시 쓸 수 있도록 허용
-  value: (props) => typeof props.src === 'string' ? (
-    <OriginalNextImage {...props} unoptimized blurDataURL={props.src}/>
-  ) : (
-    <OriginalNextImage {...props} unoptimized />
-  )
-})
+// Object.defineProperty(NextImage, 'default', {
+//   configurable: true, // 재정의를 허용
+//   writable: true,     // 값을 다시 쓸 수 있도록 허용
+//   value: (props) => typeof props.src === 'string' ? (
+//     <OriginalNextImage {...props} unoptimized blurDataURL={props.src}/>
+//   ) : (
+//     <OriginalNextImage {...props} unoptimized />
+//   )
+// })
 
 
 export default preview;

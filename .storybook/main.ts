@@ -11,13 +11,14 @@ const config: StorybookConfig = {
     "@storybook/addon-postcss",
     "@chromatic-com/storybook",
     "@storybook/addon-interactions",
-    "@storybook/addon-styling"
+    "@storybook/addon-styling",
+    "@storybook/addon-docs"
   ],
   framework: {
     name: "@storybook/nextjs",
     options: {},
   },
-  staticDirs: ["..\\public"],
+  staticDirs: ["../public"],
   babel: async options => ({
     ...options,
     plugins: [
