@@ -120,7 +120,6 @@ interface DropdownProps {
  */
 const Dropdown = (props: DropdownProps) => {
     const { options, value, name, hasError, onChange } = props
-    console.log(options)
     const initialItem = options.find((i) => i.value === value) ?? options[0]
     const [isOpen, setIsOpen] = useState(false)
     const [selectedItem, setSelectedItem] = useState(initialItem)

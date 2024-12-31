@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Box, { BoxProps } from 'components/layout/Box'
 import type { CSSPropertyGridArea, CSSPropertyGridAutoFlow, CSSPropertyGridColumn, CSSPropertyGridRow, Responsive } from 'types/styles'
 import { toPropValue } from 'utils/styles'
+import React from 'react'
 
 type GridProps = BoxProps & {
     gridGap?: Responsive<string>
@@ -37,8 +38,8 @@ const Grid = styled(Box)<GridProps>`
     ${(props) => toPropValue('grid-area', props.gridArea, props.theme)}
 `
 
-Grid.defaultProps = {
-    display: 'grid'
-}
+const GridWithDefault: React.FC<GridProps> = ({display = 'grid', ...props }) => (
+    <Grid display={display} {...props} />
+)
 
-export default Grid
+export default GridWithDefault

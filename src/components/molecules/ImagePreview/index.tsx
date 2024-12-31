@@ -12,7 +12,7 @@ const CloseBox = styled(Flex)`
     top: 0;
     right: 0;
     width: 30px;
-    height: 20px;
+    height: 30px;
     border-radius: 0 6px 0 6px;
     background-color: rgba(44, 44, 44, 0.66);
     cursor: pointer;
@@ -62,6 +62,7 @@ const ImagePreview = ({
 
     return (
         <ImagePreviewContainer height={height} width={width}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={src} alt={alt} height={height} width={width} />
             <CloseBox
                 alignItems="center"

@@ -99,7 +99,6 @@ const LINE_HEIGHT_KEYS = new Set(['line-height'])
  * @returns CSS 속성값
  */
 function toThemeValueIfNeeded<T>(propKey: string, value: T, theme?: AppTheme) {
-    console.log(theme, theme?.space, FONT_SIZE_KEYS.has(propKey))
     if (
         theme &&
         theme.space &&
@@ -136,7 +135,7 @@ function toThemeValueIfNeeded<T>(propKey: string, value: T, theme?: AppTheme) {
     ) {
         return theme.lineHeights[value]
     }
-    console.log(value)
+    
     return value
 }
 function isResponsivePropType<T>(prop: any): prop is ResponsiveProps<T> {

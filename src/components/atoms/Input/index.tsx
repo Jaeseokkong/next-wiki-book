@@ -1,9 +1,11 @@
+import { InputProps } from '@mui/material'
+import React from 'react'
 import styled, { css } from 'styled-components'
 
 /*
 * 텍스트 입력
 */
-const Input = styled.input<{ hasError?: boolean, hasBorder?: boolean }>`
+const StyledInput = styled.input<{ hasError?: boolean, hasBorder?: boolean }>`
     color: ${({ theme }) => theme.colors.inputText};
     ${({ theme, hasBorder, hasError }) => {
         console.log(theme.colors)
@@ -44,8 +46,10 @@ const Input = styled.input<{ hasError?: boolean, hasBorder?: boolean }>`
     }
 `
 
-Input.defaultProps = {
-    hasBorder: true,
+const Input = ({ hasBorder = true, ...props }) => {
+    return (
+        <StyledInput hasBorder={hasBorder} {...props} />
+    )
 }
 
 export default Input

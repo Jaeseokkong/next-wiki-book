@@ -13,16 +13,17 @@ const isInput = (value: EventTarget | null): value is HTMLInputElement => {
 
 /**
  * 이벤트로부터 입력된 파일을 얻는다
- * @param e DragEvnet 또는 ChangeEvent
+ * @param e DragEvent 또는 ChangeEvent
  * @returns File의 배열
  */
 const getFilesFromEvent = (e: React.DragEvent | React.ChangeEvent): File[] => {
     if (isDragEvt(e)) {
         return Array.from(e.dataTransfer.files)
     } else if (isInput(e.target) && e.target.files) {
+        console.log('여기는 탄다', Array.from(e.target.files))
         return Array.from(e.target.files)
     }
-
+    console.log('xxxx')
     return []
 }
 
@@ -106,7 +107,7 @@ const DropzoneContent = styled.div<{ width: string | number, height: string | nu
     height: ${({ height }) => (typeof height === 'number' ? `${height}px` : height )};
 `
 
-const DropzonInputFile = styled.input`
+const DropzoneInputFile = styled.input`
     display: none;
 `
 
@@ -133,9 +134,7 @@ const Dropzone = (props: DropzoneProps) => {
         setIsFocused(false)
 
         const files = value.concat(
-            getFilesFromEvent(e).filter((f) => {
-                acceptedFileTypes.includes(f.type as FileType)
-            })
+            getFilesFromEvent(e).filter((f) => acceptedFileTypes.includes(f.type as FileType))
         )
 
         onDrop && onDrop(files)
@@ -149,9 +148,7 @@ const Dropzone = (props: DropzoneProps) => {
         setIsFocused(false)
 
         const files = value.concat(
-            getFilesFromEvent(e).filter((f) => 
-                acceptedFileTypes.includes(f.type as FileType)
-            )
+            getFilesFromEvent(e).filter((f) => acceptedFileTypes.includes(f.type as FileType))
         )
 
         if (files.length === 0) {
@@ -212,7 +209,7 @@ const Dropzone = (props: DropzoneProps) => {
                 data-testid="dropzone"
             >
                 {/* 더미 입력 */}
-                <DropzonInputFile 
+                <DropzoneInputFile 
                     ref={inputRef}
                     type="file"
                     name={name}

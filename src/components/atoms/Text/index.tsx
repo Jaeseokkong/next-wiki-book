@@ -84,7 +84,7 @@ const variants = {
  * 텍스트
  * 변형, 색상, 타이포그래피, 레이아웃, 스페이스 관련 Props 추가
  */
-const Text = styled.span<TextProps>`
+const StyledText = styled.span<TextProps>`
     ${({ variant, fontSize, letterSpacing, lineHeight, theme }) => {
         // 변형 스타일에 적용
         if (variant && variants[variant]) {
@@ -119,10 +119,10 @@ const Text = styled.span<TextProps>`
     ${(props) => toPropValue('padding-bottom', props.paddingBottom, props.theme)}
     ${(props) => toPropValue('padding-right', props.paddingRight, props.theme)}
 `
-
-Text.defaultProps = {
-    variant: 'medium',
-    color: 'text',
+const Text = ({ variant = 'medium', color = 'text', ...props}) => {
+    return (
+        <StyledText variant={variant} color={color} {...props} />
+    )
 }
 
 export default Text

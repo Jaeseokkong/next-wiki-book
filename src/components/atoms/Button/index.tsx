@@ -47,7 +47,6 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
             backgroundColor?: Responsive<Color>
         }
     }
-    theme?: any
 }
 
 const variants = {
@@ -98,7 +97,7 @@ const variants = {
  * 버튼
  * 변형, 색상, 타이포그래피, 레이아웃, 스페이스 관련 Props 추가
  */
-const Button = styled.button<ButtonProps>`
+const StyledButton = styled.button<ButtonProps>`
     ${({ variant, color, backgroundColor, pseudoClass, theme }) =>{
         // 변형 스타일 적용
         if (variant && variants[variant]) {
@@ -146,17 +145,34 @@ const Button = styled.button<ButtonProps>`
     border: none;
 `
 
-Button.defaultProps = {
-    variant: 'primary',
-    paddingLeft: 2,
-    paddingRight: 2,
-    paddingTop: 1,
-    paddingBottom: 2,
-    color: 'white',
-    display: 'inline-block',
-    textAlign: 'center',
-    lineHeight: 'inherit',
-    fontSize: 'inherit'
+const Button: React.FC<ButtonProps> = ({
+    variant = 'primary',
+    paddingLeft = 2,
+    paddingRight = 2,
+    paddingTop = 1,
+    paddingBottom = 1,
+    color = 'white',
+    display = 'inline-block',
+    textAlign = 'center',
+    lineHeight = 'inherit',
+    fontSize = 'inherit',
+    ...props
+}) => {
+    return (
+        <StyledButton
+            variant={variant}
+            paddingLeft={paddingLeft}
+            paddingRight={paddingRight}
+            paddingTop={paddingTop}
+            paddingBottom={paddingBottom}
+            color={color}
+            display={display}
+            textAlign={textAlign}
+            lineHeight={lineHeight}
+            fontSize={fontSize}
+            {...props}
+        />
+    )
 }
 
 export default Button
