@@ -11,6 +11,7 @@ import Flex from 'components/layout/Flex'
 import BadgeIconButton from 'components/molecules/BadgeIconButton'
 import { useAuthContext } from 'contexts/AuthContext'
 import { useShoppingCartContext } from 'contexts/ShoppingCartContext'
+import { AnchorRounded } from '@mui/icons-material'
 
 // 헤더 루트
 const HeaderRoot = styled.header`
@@ -52,7 +53,7 @@ const Header = () => {
                 <Nav as="nav" height="56px" alignItems="center">
                     <NavLink>
                         <Link href="/" passHref>
-                            <Anchor as="a">
+                            <Anchor>
                                 <AppLogo/>
                             </Anchor>
                         </Link>
@@ -60,28 +61,28 @@ const Header = () => {
                     <NavLink> 
                         <Box display={{ base: 'none', md: 'block' }}>
                             <Link href="/search" passHref>
-                                <Anchor as="a">모두</Anchor>
+                                <Anchor>모두</Anchor>
                             </Link>
                         </Box>
                     </NavLink>
                     <NavLink>
                         <Box display={{ base: 'none', md: 'block' }}>
                             <Link href="search/clothes" passHref>
-                                <Anchor as="a">의류</Anchor>
+                                <Anchor>의류</Anchor>
                             </Link>
                         </Box>
                     </NavLink>
                     <NavLink>
                         <Box display={{ base: 'none', md: 'block' }}>
                             <Link href="/search/book" passHref>
-                                <Anchor as="a">책</Anchor>
+                                <Anchor>책</Anchor>
                             </Link>
                         </Box>
                     </NavLink>
                     <NavLink>
                         <Box display={{ base: 'none', md: 'block' }}>
                             <Link href="/search/shoes" passHref>
-                                <Anchor as="a">신발</Anchor>
+                                <Anchor>신발</Anchor>
                             </Link>
                         </Box>
                     </NavLink>
@@ -114,13 +115,14 @@ const Header = () => {
                             if (authUser)  {
                                 return (
                                     <Link href={`/user/${authUser.id}`} passHref>
-                                        <Anchor as="a">
+                                        <Anchor>
                                             <ShapeImage
                                                 shape="circle"
                                                 src={authUser.profileImageUrl}
                                                 width={24}
                                                 height={24}
-                                                data-testid="profile-shape-image"
+                                                data-testid="profile-shape-image" 
+                                                alt='profile-image'                                            
                                             />
                                         </Anchor>
                                     </Link>
@@ -131,7 +133,7 @@ const Header = () => {
                            } else {
                                 // 로그인하지 않은 경우에는 아이콘을 표시
                                 <Link href="/signin" passHref>
-                                    <Anchor as="a">
+                                    <Anchor>
                                         <PersonIcon size={24}/>
                                     </Anchor>
                                 </Link>
@@ -140,7 +142,7 @@ const Header = () => {
                     </NavLink>
                     <NavLink>
                         <Link href="/sell" passHref>
-                            <Button as="a">등록</Button>
+                            <Button>등록</Button>
                         </Link>
                     </NavLink>
                 </Nav>
