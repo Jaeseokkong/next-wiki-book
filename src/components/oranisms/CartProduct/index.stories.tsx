@@ -1,8 +1,8 @@
-import { Meta, StoryFn } from '@storybook/reaxt'
+import { Meta, StoryFn } from '@storybook/react'
 import CartProduct from './index'
 
 export default {
-    title: 'oranisms/CartProduct',
+    title: 'organisms/CartProduct',
     argTypes: {
         id: {
             control: { type: 'number' },
