@@ -20,7 +20,6 @@ const getFilesFromEvent = (e: React.DragEvent | React.ChangeEvent): File[] => {
     if (isDragEvt(e)) {
         return Array.from(e.dataTransfer.files)
     } else if (isInput(e.target) && e.target.files) {
-        console.log('여기는 탄다', Array.from(e.target.files))
         return Array.from(e.target.files)
     }
     console.log('xxxx')
