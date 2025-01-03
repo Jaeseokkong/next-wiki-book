@@ -11,7 +11,6 @@ import Flex from 'components/layout/Flex'
 import BadgeIconButton from 'components/molecules/BadgeIconButton'
 import { useAuthContext } from 'contexts/AuthContext'
 import { useShoppingCartContext } from 'contexts/ShoppingCartContext'
-import { AnchorRounded } from '@mui/icons-material'
 
 // 헤더 루트
 const HeaderRoot = styled.header`
@@ -29,7 +28,7 @@ const Nav = styled(Flex)`
 
 // 네비게이션 링크
 const NavLink = styled.span`
-    display: none;
+    display: inline;;
 `
 
 // 앵커
@@ -53,7 +52,7 @@ const Header = () => {
                 <Nav as="nav" height="56px" alignItems="center">
                     <NavLink>
                         <Link href="/" passHref>
-                            <Anchor>
+                            <Anchor as="a">
                                 <AppLogo/>
                             </Anchor>
                         </Link>
@@ -61,28 +60,28 @@ const Header = () => {
                     <NavLink> 
                         <Box display={{ base: 'none', md: 'block' }}>
                             <Link href="/search" passHref>
-                                <Anchor>모두</Anchor>
+                                <Anchor as="a">모두</Anchor>
                             </Link>
                         </Box>
                     </NavLink>
                     <NavLink>
                         <Box display={{ base: 'none', md: 'block' }}>
                             <Link href="search/clothes" passHref>
-                                <Anchor>의류</Anchor>
+                                <Anchor as="a">의류</Anchor>
                             </Link>
                         </Box>
                     </NavLink>
                     <NavLink>
                         <Box display={{ base: 'none', md: 'block' }}>
                             <Link href="/search/book" passHref>
-                                <Anchor>책</Anchor>
+                                <Anchor as="a">책</Anchor>
                             </Link>
                         </Box>
                     </NavLink>
                     <NavLink>
                         <Box display={{ base: 'none', md: 'block' }}>
                             <Link href="/search/shoes" passHref>
-                                <Anchor>신발</Anchor>
+                                <Anchor as="a">신발</Anchor>
                             </Link>
                         </Box>
                     </NavLink>
@@ -115,7 +114,7 @@ const Header = () => {
                             if (authUser)  {
                                 return (
                                     <Link href={`/user/${authUser.id}`} passHref>
-                                        <Anchor>
+                                        <Anchor as="a">
                                             <ShapeImage
                                                 shape="circle"
                                                 src={authUser.profileImageUrl}
@@ -133,7 +132,7 @@ const Header = () => {
                            } else {
                                 // 로그인하지 않은 경우에는 아이콘을 표시
                                 <Link href="/signin" passHref>
-                                    <Anchor>
+                                    <Anchor as="a">
                                         <PersonIcon size={24}/>
                                     </Anchor>
                                 </Link>

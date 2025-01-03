@@ -39,34 +39,35 @@ export function toPropValue<T>(
     prop?: Responsive<T>,
     theme?: AppTheme,
 ) {
+    // console.log(propKey, "/", prop, "/", theme)
     if (prop === undefined) return undefined
 
     if (isResponsivePropType(prop)) {
     const result = []
     for (const responsiveKey in prop) {
         if (responsiveKey === 'base') {
-        // 기본 스타일
-        result.push(
-            `${propKey}: ${toThemeValueIfNeeded(
-            propKey,
-            prop[responsiveKey],
-            theme,
-            )};`,
-        )
+            // 기본 스타일
+            result.push(
+                `${propKey}: ${toThemeValueIfNeeded(
+                propKey,
+                prop[responsiveKey],
+                theme,
+                )};`,
+            )
         } else if (
-        responsiveKey === 'sm' ||
-        responsiveKey === 'md' ||
-        responsiveKey === 'lg' ||
-        responsiveKey === 'xl'
+            responsiveKey === 'sm' ||
+            responsiveKey === 'md' ||
+            responsiveKey === 'lg' ||
+            responsiveKey === 'xl'
         ) {
-        // 미디어 쿼리의 스타일
-        const breakpoint = BREAKPOINTS[responsiveKey]
-        const style = `${propKey}: ${toThemeValueIfNeeded(
-            propKey,
-            prop[responsiveKey],
-            theme,
-        )};`
-        result.push(`@media screen and (min-width: ${breakpoint}) {${style}}`)
+            // 미디어 쿼리의 스타일
+            const breakpoint = BREAKPOINTS[responsiveKey]
+            const style = `${propKey}: ${toThemeValueIfNeeded(
+                propKey,
+                prop[responsiveKey],
+                theme,
+            )};`
+            result.push(`@media screen and (min-width: ${breakpoint}) {${style}}`)
         }
     }
     return result.join('\n')
@@ -135,7 +136,7 @@ function toThemeValueIfNeeded<T>(propKey: string, value: T, theme?: AppTheme) {
     ) {
         return theme.lineHeights[value]
     }
-    
+
     return value
 }
 function isResponsivePropType<T>(prop: any): prop is ResponsiveProps<T> {

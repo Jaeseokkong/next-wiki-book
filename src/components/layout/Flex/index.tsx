@@ -33,7 +33,7 @@ type FlexProps = BoxProps & {
  * Flex 컴포넌트
  * flexbox 구현에 사용한다.
  */
-const StyledFlex = styled(Box)<FlexProps>`
+const Flex = styled(Box)<FlexProps>`
     ${(props) => toPropValue('align-items', props.alignItems, props.theme)}
     ${(props) => toPropValue('align-content', props.alignContent, props.theme)}
     ${(props) => toPropValue('justify-content', props.justifyContent, props.theme)}
@@ -46,9 +46,7 @@ const StyledFlex = styled(Box)<FlexProps>`
     ${(props) => toPropValue('justify-self', props.justifySelf, props.theme)}
     ${(props) => toPropValue('align-self', props.alignSelf, props.theme)}
     ${(props) => toPropValue('order', props.order, props.theme)}
+    ${(props) => toPropValue('display', props.display ? props.display : 'flex', props.theme)}
 `
-const Flex = ({ display = 'flex', ...props }) => (
-    <StyledFlex display={display} {...props} />
-)
 
 export default Flex
