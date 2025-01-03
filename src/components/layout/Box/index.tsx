@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import styled from 'styled-components'
-import type { Responsive } from 'types/styles'
+import type { Responsive } from 'types'
 import { toPropValue, Color, Space } from 'utils/styles'
 
 // Box가 가질 수 있는 속성을 나열
